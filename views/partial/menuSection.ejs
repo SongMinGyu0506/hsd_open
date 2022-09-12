@@ -1,0 +1,53 @@
+<div class="row mt-3">
+    <div class="col-xl-3 col-sm-4">
+        <div class="flex-shrink-0 p-3 bg-white border" style="width: 280px;">
+            <a href="/menu" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
+              <span class="fs-5 fw-semibold">전체메뉴</span>
+            </a>
+            <% for(var i = 0; i < firstRows.length; i++) { %>
+                <ul class="list-unstyled ps-0">
+                    <li class="mb-1">
+                        <button class="btn btn-toggle align-items-center rounded" data-bs-toggle="collapse" data-bs-target="#home-collapse<%=i%>" aria-expanded="true">
+                            <%= firstRows[i].title %>
+                          </button>
+                          <div class="collapse show" id="home-collapse<%=i%>">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal p-3 small list-group">
+                                <% for(var j=0; j < firstRows[i].next.length; j++) { %>
+                                    <li class="fw-bold text-decoration-none list-group-item"><a href="/menu/category/<%=firstRows[i].next[j].url %>" class="link-dark rounded"><%=firstRows[i].next[j].title%></a></li>
+                                <% } %>
+                            </ul>
+                          </div>
+                    </li>
+                </ul>
+            <% } %>
+          </div>
+    </div>
+    <div class="col-xl-9 col-sm-8">
+        <div class="row mt-3">
+        <% var menuCnt = menuData.length;%>
+        <% for(var i = 0; i < menuCnt; i++) { %>
+                <div class="col-xl-4 col-sm-6 mt-3 animate_css fw-bold" >
+                    <a href="/menu/<%=menuData[i].name %>" class="text-decoration-none" style="color: inherit;">
+                    <div class="card" style="width: 18rem;">
+                        <img src="/images/menu/<%=menuData[i].img_url%>" class="card-img-top" alt="...">
+                        <div class="card-body">
+                          <p class="card-text fw-bold"><h5><%=menuData[i].name%></h5></p>
+                          <span><%=menuData[i].price%>원</span>
+                        </div>
+                      </div>
+                    </a>
+                </div>
+        <% } %>
+        </div>
+    </div>
+</div>
+<script>
+  $(".animate_css").on({
+        mouseover: function () {
+            $(this).addClass('animate__animated animate__pulse');
+        },
+        mouseleave: function () {
+            $(this).removeClass('animate__animated animate__pulse');
+        }
+    });
+</script>

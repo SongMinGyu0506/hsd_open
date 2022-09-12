@@ -1,0 +1,115 @@
+<div class="row mt-3">
+    <div class="col-sm-12">
+        <a href="/menu" style="text-decoration: none; color:black;">
+            <h1>< 전체 메뉴</h1>
+        </a>
+    </div>
+</div>
+<form method="post" action="/order">
+<div class="row">
+    <div class="col p-3" style="height: 611.16px;">
+        <img src="/images/inspect/<%=foodData.img_url%>" class="w-100 h-100">
+    </div>
+    <div class="col p-3">
+        <div class="h-100" style="background-color: lightyellow;">
+            <p class="h1 fw-bold p-3 md-2"><%=foodData.name%></p>
+            <p class="p-4 fw-bold"><%=foodData.description%></p>
+            <div class="row mt-5"></div>
+            <div class="row align-items-center">
+                <div class="col-1"></div>
+                <div class="col-10">
+                    <% for (var i = 0; i < options.length; i ++) { %>
+                        <div class="form-check">
+                            <input class="form-check-input clickEnt" type="checkbox"
+                                 value="<%=options[i].price%>" 
+                                 id="optionChecker<%=i+1%>" 
+                                 data-name="<%=options[i].option_name%>"
+                                 data-price="<%=options[i].price%>"
+                                 data-id = "<%=options[i].option_id%>">
+                            <label class="form-check-label fw-bold" for="flexCheckDefault">
+                              <%=options[i].option_name%>&nbsp; &nbsp; &nbsp; &nbsp; +<%=options[i].price %>원
+                            </label>
+                          </div>
+                    <% } %>
+                </div>
+                <div class="col-1"></div>
+            </div>
+            <div class="row mt-5"></div>
+            <div class="row mt-5">
+                <div class="col p-3 d-flex justify-content-center">
+                    <button type="submit" class="btn btn-lg btn-outline-primary p-5 fw-bold" id="submitEnt"
+                        style="font-size: 15pt !important"
+                    >구매</button>
+                </div>
+                <div class="col p-3 d-flex justify-content-center align-middle">
+                    <div class="fw-bold mt-4" style="font-size: 24pt !important">
+                        가격 <span id="changePrice" class=""><%=foodData.price%></span>원</div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+</form>
+
+<script>
+    console.log(Number($('#changePrice').text()));
+    const option_length = <%=options.length%>;
+    for (let index = 1; index <= option_length; index++) {
+        $(`#optionChecker${index}`).change(function() {
+            if($(`#optionChecker${index}`).is(":checked")) {
+                console.log($(`#optionChecker${index}`).val());
+                let tempPrice = Number($('#changePrice').text());
+                tempPrice = tempPrice + Number($(`#optionChecker${index}`).val());
+                $('#changePrice').text(tempPrice);
+            } else {
+                let tempPrice = Number($('#changePrice').text());
+                tempPrice = tempPrice - Number($(`#optionChecker${index}`).val());
+                $('#changePrice').text(tempPrice);
+            }
+        })
+    }
+    
+    $('#submitEnt').click(function(event) {
+        event.preventDefault();
+        const option_length = <%=options.length%>;
+        let sendObject = {
+            user:"<%=user.uid%>",
+            menu_id: <%=foodData.menu_id%>,
+            foodName: "<%=foodData.name%>",
+            original_price: "<%=foodData.price%>",
+            price: Number($('#changePrice').text()),
+            options: []
+        }
+        for (var i = 1; i <= option_length; i++) {
+            if($(`#optionChecker${i}`).is(":checked")) {
+                console.log($(`#optionChecker${i}`).attr("data-name"));
+                console.log($(`#optionChecker${i}`).attr("data-price"));
+                var temp_option = {
+                    option_id: $(`#optionChecker${i}`).attr("data-id"),
+                    option_name: $(`#optionChecker${i}`).attr("data-name"),
+                    option_price: $(`#optionChecker${i}`).attr("data-price")
+                };
+                sendObject.options.push(temp_option);
+            }
+        }
+        console.log(sendObject);
+        if (sendObject.user == "") {
+            alert("로그인하여 주십시오");
+            window.location.href = "/login";
+        } else {
+            $.ajax({
+            url: "/menu/order",
+            data: sendObject,
+            method: "POST",
+            dataType: "json"
+            })
+            .done(function(json) {
+                alert("주문이 완료되었습니다.");
+                window.location.href = "/main";
+            })
+            .fail(function(xhr, status, err) {
+                alert("ERROR");
+            })
+        }
+    })
+</script>

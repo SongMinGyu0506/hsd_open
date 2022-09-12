@@ -1,0 +1,87 @@
+<div class="row">
+    <div class="col">
+        <p class="h1 fw-bold p-3">MY PAGE</p>
+        <hr>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <p class="h3 fw-bold p-2">비밀번호 변경</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-1"></div>
+    <div class="col-10 align-self-center p-1 border">
+        <div class="p-3">
+              <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" class="form-control" id="pwd" placeholder="Password">
+              </div>
+              <button type="submit" id="pwdChangeEnt"class="btn btn-outline-primary mt-3">변경</button>
+        </div>
+    </div>
+    <div class="col-1"></div>
+</div>
+<div class="row">
+    <div class="col">
+        <hr>
+        <p class="h3 fw-bold p-2">주문 내역</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col p-3">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">상품명</th>
+                <th scope="col">가격</th>
+                <th scope="col">추가</th>
+              </tr>
+            </thead>
+            <tbody>
+                <% for(var i=0; i< order_result_arr.length; i++) { %>
+                    <tr>
+                        <th scope="row"><%=i+1%></th>
+                        <td><%=order_result_arr[i].name%></td>
+                        <td><%=order_result_arr[i].price%></td>
+                        <td>
+                            <%
+                                if (order_result_arr[i].options.length > 0) {
+                                    for(var j=0; j<order_result_arr[i].options.length; j++) { 
+                            %>
+                                        <span> [<%=order_result_arr[i].options[j]%>]</span>
+                            
+                            <% }} else { %>
+                                <span></span>
+                            <% } %>
+                        </td>
+                      </tr>
+                <% } %>
+            </tbody>
+          </table>
+    </div>
+</div>
+
+<script>
+    $('#pwdChangeEnt').click(function (e) {
+        e.preventDefault();
+        //console.log($('#pwd').val());
+        //console.log('<%=user.uid%>');
+        $.ajax({
+            url: "/login/pwdchange",
+            data: {
+                pwd: $('#pwd').val()
+            },
+            method: 'POST',
+            dataType: 'json',
+        })
+        .done(function (data) {
+            alert("비밀번호 변경이 완료되었습니다.");
+            window.location.href = "/main";
+        })
+        .fail(function () {
+            alert("Error");
+        });
+    })
+</script>

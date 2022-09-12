@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('./partial/import.ejs') %>
+    <link rel="shortcut icon" href="/images/favicon.ico">
+    <title>한솥 도시락</title>
+    <style>
+        body {
+            background-color: lightgray;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <%- include('./partial/header.ejs',{user:headerUser}); %>
+        <%- include('./partial/main_inspect_section.ejs',{user:user,foodData:foodData, options:options}); %>
+        <%- include('./partial/footer.ejs') %>
+    </div>
+</body>
+</html>

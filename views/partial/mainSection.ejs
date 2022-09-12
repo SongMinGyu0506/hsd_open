@@ -1,0 +1,136 @@
+<style>
+    .main_info {
+        content: '';
+        display: block;
+        position: absolute;
+        left: 10px;
+        top: 0;
+        width: 450px;
+        height: 600px;
+        background-color: #373737;
+        opacity: 0.9;
+        background-clip:content-box;
+    }
+    .custom_btn {
+        display: block;
+        box-sizing: border-box;
+    }
+    .custom_btn2 {
+        margin: 100px 0 0 0;
+    }
+    .no_href {
+        text-decoration: none;
+        color: inherit;
+        border: 2px solid white;
+        padding: 20px;
+        color: white;
+        font-weight: bold;
+        font-size: 14pt;
+    }
+</style>
+
+<div class="row mt-3" style="height: 580px;">
+    <div class="col-xl-6 col-lg-6 col-sm-12 col-12 animate_css" style="background-color: lightgoldenrodyellow; background-clip: content-box;">
+        <a href="/menu" style="text-decoration: none; color: inherit;">
+        <figure>
+            <span class="w-100">
+                <img class="w-100"src="/images/main_img_01.jpg" alt="">
+            </span>
+            <figcaption>
+                <p style="font-size: 24px; line-height: 140%; font-weight: bold;" class="p-5">
+                    <span style="display: block;">가격 이상의 가치가 담긴</span>
+                    <span style="display: block;">다양한 메뉴를 확인해 보세요</span>
+                </p>
+            </figcaption>
+        </figure>
+    </a>
+    </div>
+    <div class="col-xl-6 col-lg-6 col-md-6 d-none d-md-block animate_css" style="background-color: lightgoldenrodyellow; background-clip: content-box;">
+        <a href="/menu" style="text-decoration: none; color: inherit;">
+        <figure>
+            <span class="w-100">
+                <img class="w-100"src="/images/main_img_02.jpg" alt="">
+            </span>
+            <figcaption>
+                <p style="font-size: 24px; line-height: 140%; font-weight: bold;" class="p-5">
+                    <span style="display: block;">갓 지은 한끼가 기다리고 있는</span>
+                    <span style="display: block;">가까운 한솥 매장을 찾아보세요</span>
+                </p>
+            </figcaption>
+        </figure>
+    </a>
+    </div>
+</div>
+<div class="row mt-3" style="height: 500px;">
+    <div class="col-xl-4 d-none d-xl-block animate_css" style="background-color: #f6ca00; background-clip: content-box;">
+        <h2 class="p-5">
+            <span style="display: block; font-weight: bold;">가맹점주에게도</span>
+            <span style="display: block; font-weight: bold;">든든한 한솥입니다.</span>
+            <span style="display: block;">_</span>
+        </h2>
+        <p class="p-5">
+            <span style="display: block;">점주님들의 꿈을 실현시켜 드리기 위해</span>
+            <span style="display: block;">가맹점주와 성공까지 동행하는 한솥!</span>
+            <span style="display: block;">상담부터 개업까지 모든 희로애락을 함께 합니다.</span>
+        </p>
+    </div>
+    <div class="col-xl-4 col-sm-6 col-6 animate_css" style="background-color: lightgoldenrodyellow; background-clip: content-box;">
+        <a href="#" style="text-decoration: none; color: inherit;">
+            <figure>
+                <span class="w-100">
+                    <img src="/images/main_img_03.jpg" class="w-100"/>
+                </span>
+                <figcaption>
+                    <p style="font-size: 20px; line-height: 140%; font-weight: bold;" class="p-5">
+                        <span style="display: block;">한솥은 언제나 고객과 점주님들의</span>
+                        <span style="display: block;">이익을 먼저 생각합니다</span>
+                    </p>
+                </figcaption>
+            </figure>
+        </a>
+    </div>
+    <div class="col-xl-4 col-sm-6 col-6 animate_css" style="background-color: lightgoldenrodyellow; background-clip: content-box;">
+        <figure>
+            <span class="w-100">
+                <img src="/images/main_img_04.jpg" class="w-100"/>
+            </span>
+            <figcaption>
+                <p style="font-size: 21px; line-height: 140%; font-weight: bold;" class="p-5">
+                    <span style="display: block;">한솥과 함께하는 가맹점주들의</span>
+                    <span style="display: block;">성공 스토리입니다.</span>
+                </p>
+            </figcaption>
+        </figure>
+    </div>
+</div>
+<div class="row mt-4" style="height: 600px; position: relative; background-clip: content-box;">
+    <div class="col-xl-12 col-12 animate_css" style="background:url(/images/main_visual_02.jpg); background-clip: content-box;">
+        <div class="main_info">
+            <h2 class="p-4" style="color: white;">
+                <span style="display: block;">든든한 솥밥을 위해</span>
+                <span style="display: block;">한솥이 지키고,</span>
+                <span style="display: block;">키워가는 것들</span>
+            </h2>
+            <p class="p-4"style="color: white;">
+                <span style="display: block;">한솥은 '따끈한 도시락으로 지역사회에 공헌한다' 라는</span>
+                <span style="display: block;">기업이념 아래, 고객 이익을 최우선으로 하며 엄선된</span>
+                <span style="display: block;">좋은 식재료만 사용하는 대한민국 외식종합기업 시장을</span>
+                <span style="display: block;">리드하는 글로벌 종합외식기업 입니다.</span>
+            </p>
+            <span class="custom_btn custom_btn2 p-4">
+                <a href="#" class="no_href">브랜드 철학</a>
+            </span>
+        </div>
+    </div>
+</div>
+<script>
+    let original_class;
+    $(".animate_css").on({
+        mouseover: function () {
+            $(this).addClass('animate__animated animate__pulse');
+        },
+        mouseleave: function () {
+            $(this).removeClass('animate__animated animate__pulse');
+        }
+    });
+</script>
